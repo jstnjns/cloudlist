@@ -80,11 +80,18 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/models/tracks.js"></script>
-    <script src="scripts/controllers/tracks.js"></script>
-    <script src="scripts/controllers/about.js"></script>
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
     <script src="https://w.soundcloud.com/player/api.js"></script>
+
+    <script src="scripts/app.js"></script>
+
+    <script src="scripts/directives/soundcloud.js"></script>
+
+    <script src="scripts/models/tracks.js"></script>
+
+    <script src="scripts/controllers/tracks.js"></script>
+    <script src="scripts/controllers/tracks/new.js"></script>
+    <script src="scripts/controllers/tracks/track.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -3,6 +3,6 @@
 angular.module('cloudlistApp')
   .factory('Tracks', function (ActiveRecord) {
     return ActiveRecord.extend({
-      $urlRoot: '/tracks'
+      $url: 'http://localhost:1337/tracks'
     });
   });

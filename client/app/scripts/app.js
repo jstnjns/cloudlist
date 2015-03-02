@@ -33,3 +33,7 @@ angular
         redirectTo: '/'
       });
   });
+
+SC.initialize({
+  client_id: '7a9b6d08ffc80df2e8eaf0300a9694ac'
+});
