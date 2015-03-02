@@ -16,13 +16,14 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ActiveRecord'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/tracks.html',
+        controller: 'TracksCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

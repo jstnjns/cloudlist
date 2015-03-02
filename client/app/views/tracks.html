@@ -1,0 +1,29 @@
+<div class="well">
+  <ng-form name="submission">
+    <div class="form-group">
+      <label>URL</label>
+      <input class="form-control" placeholder="URL"
+        ng-model="url">
+    </div>
+
+    <div class="form-group">
+      <a class="btn btn-primary"
+        ng-click="save()">
+        Save
+      </a>
+
+      <a class="btn btn-link"
+        ng-click="clear()">
+        Clear
+      </a>
+    </div>
+  </ng-form>
+</div>
+
+<ol class="list-unstyled">
+  <li ng-repeat="track in tracks">
+
+    <code>{{track.url}}</code>
+
+  </li>
+</ol>
