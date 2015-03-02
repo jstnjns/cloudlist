@@ -29,7 +29,7 @@ $ sails lift
 Be sure to install Yeoman, globally (Goucher).
 
 ```
-$ npm install -g yeoman
+$ npm install -g yo
 ```
 
 Then serve dat shit.
