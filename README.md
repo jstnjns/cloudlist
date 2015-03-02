@@ -3,10 +3,11 @@ Communal playlists for SoundCloud users that want to share new music.
 
 ## Setup
 
-Be sure to install Grunt, globally (Goucher).
+Be sure to install Grunt, and Compass, globally (Goucher).
 
 ```
 $ npm install -g grunt-cli
+$ gem install compass
 ```
 
 ### Server
