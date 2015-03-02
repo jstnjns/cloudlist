@@ -22,6 +22,7 @@ Then lift dat shit.
 
 ```
 $ cd server
+$ npm install
 $ sails lift
 ```
 
@@ -37,6 +38,8 @@ Then serve dat shit.
 
 ```
 $ cd client
+$ npm install
+$ bower install
 $ grunt serve
 ```
 
