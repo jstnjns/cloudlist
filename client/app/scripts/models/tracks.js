@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .factory('Tracks', function ($scope, ActiveRecord) {
+  .factory('Tracks', function (ActiveRecord) {
     return ActiveRecord.extend({
       $urlRoot: '/tracks'
-    })
+    });
   });

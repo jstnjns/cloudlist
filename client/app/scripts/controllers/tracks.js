@@ -19,6 +19,12 @@ angular.module('cloudlistApp')
     ];
 
     $scope.save = function() {
+      var values = angular.copy($scope.track);
 
+      Tracks.new(values).$save();
+    };
+
+    $scope.clear = function() {
+      $scope.url = '';
     };
   });
