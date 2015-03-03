@@ -12,6 +12,7 @@ angular.module('cloudlistApp')
           $scope.$on('state', onStateChange);
 
           fetch();
+          window.setInterval(fetch, 5 * 1000);
         },
 
 
