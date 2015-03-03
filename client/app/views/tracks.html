@@ -1,0 +1,8 @@
+<div ng-controller="TracksNewCtrl"
+  ng-include="'views/tracks/new.html'"></div>
+
+<ol class="list-unstyled">
+  <li ng-repeat="track in tracks"
+    ng-controller="TrackCtrl"
+    ng-include="'views/tracks/track.html'"></li>
+</ol>
