@@ -1,6 +1,64 @@
 'use strict';
 
 angular.module('cloudlistApp')
+  .directive('scStream', function($http, SoundcloudService) {
+    return {
+      scope: {
+        scTrackUrl: '=',
+        scAudio: '=?'
+      },
+
+      link: function($scope, $elm, $attrs) {
+
+
+        var audio,
+
+
+            init = function() {
+              $scope.$watch('scTrackUrl', parse);
+            },
+
+
+            parse = function() {
+              SoundcloudService.parseUrl($scope.scTrackUrl)
+                .success(render);
+            },
+
+
+            emit = function(name) {
+              $scope.$emit('state', name);
+            },
+
+
+            render = function(track) {
+              destroyAudio();
+              createAudio(track.stream_url);
+            },
+
+            createAudio = function(url) {
+              audio = new Audio();
+              audio.onplay = function() { emit('play'); };
+              audio.onpause = function() { emit('pause'); };
+              audio.src = SoundcloudService.addClient(url);
+              audio.play();
+            },
+
+            destroyAudio = function() {
+              if (audio) {
+                audio.pause();
+                audio = undefined;
+              }
+            };
+
+
+        init();
+
+
+      }
+    }
+  });
+
+angular.module('cloudlistApp')
   .directive('scEmbed', function ($http) {
     return {
       scope: {
@@ -37,43 +95,4 @@ angular.module('cloudlistApp')
 
       }
     };
-  });
-
-
-angular.module('cloudlistApp')
-  .directive('scStream', function($http, SoundcloudService) {
-    return {
-      scope: {
-        scTrackUrl: '=',
-        scAudio: '=?'
-      },
-
-      link: function($scope, $elm, $attrs) {
-
-
-        var audio = $scope.scAudio || new Audio(),
-
-
-            init = function() {
-              $scope.$watch('scTrackUrl', parse);
-            },
-
-
-            parse = function() {
-              SoundcloudService.parseUrl($scope.scTrackUrl)
-                .success(render);
-            },
-
-
-            render = function(track) {
-              audio.src = SoundcloudService.addClient(track.stream_url);
-              audio.play();
-            };
-
-
-        init();
-
-
-      }
-    }
   });
