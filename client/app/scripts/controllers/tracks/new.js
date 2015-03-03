@@ -14,6 +14,8 @@ angular.module('cloudlistApp')
       SoundcloudService.parseUrl($scope.url)
         .success(function(data) {
 
+          if (!SoundcloudService.isTrack(data)) return;
+
           new Tracks({
                 name: data.title,
                 art: data.artwork_url,

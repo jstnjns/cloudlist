@@ -3,7 +3,6 @@
 angular.module('cloudlistApp')
   .controller('TracksCtrl', function ($scope, Tracks, Player) {
 
-    window.player = Player;
 
     var init = function() {
           $scope.current = null;
@@ -31,9 +30,10 @@ angular.module('cloudlistApp')
 
 
         fetch = function() {
-          Tracks.fetchAll().then(function(tracks) {
-            $scope.tracks = tracks;
-          });
+          Tracks.fetchAll()
+            .then(function(tracks) {
+              $scope.tracks = tracks;
+            });
         },
 
 

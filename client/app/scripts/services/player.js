@@ -19,7 +19,7 @@ angular.module('cloudlistApp')
 
     Player.prototype.load = function(src) {
       this.audio.src = src;
-      this.play()
+      this.play();
     };
 
     Player.prototype.play = function(play) {
