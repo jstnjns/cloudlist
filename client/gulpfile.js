@@ -8,7 +8,8 @@ gulp.task('build', ['build-views', 'build-scripts', 'build-styles', 'build-image
 
 gulp.task('build-views', function() {
   return gulp.src('./app/views/**/*')
-    .pipe(gulp.dest('./dist/views/'));
+    .pipe(gulp.dest('./dist/views/'))
+    .pipe(connect.reload());
 });
 
 gulp.task('build-scripts', ['build-scripts-vendor', 'build-scripts-application']);
@@ -66,6 +67,7 @@ gulp.task('serve', ['build'], function() {
 });
 
 gulp.task('watch', ['build'], function() {
+  gulp.watch('./app/views/**/*', ['build-views']);
   gulp.watch('./app/scripts/**/*', ['build-scripts']);
   gulp.watch('./app/styles/**/*', ['build-styles']);
   gulp.watch('./app/images/**/*', ['build-images']);
