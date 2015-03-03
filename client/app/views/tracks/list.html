@@ -1,7 +1,11 @@
 <div class="list-group">
-  <div class="list-group-item"
+  <a class="list-group-item"
     ng-repeat="track in tracks"
     ng-controller="TrackCtrl"
     ng-include="'views/tracks/track.html'"
-    ng-click="play(track)"></div>
+    ng-click="play(track)"
+
+    ng-class="{
+      'active': track == current
+    }"></a>
 </div>
