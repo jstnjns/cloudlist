@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .factory('Tracks', function (ActiveRecord) {
+  .factory('Tracks', function (ActiveRecord, API) {
     return ActiveRecord.extend({
-      $urlRoot: 'http://localhost:1337/tracks'
+      $urlRoot: API.url + '/tracks'
     });
   });
