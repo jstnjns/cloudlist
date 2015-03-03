@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-ruby-sass'),
     connect = require('gulp-connect');
 
 
@@ -40,8 +40,7 @@ gulp.task('build-scripts-application', function() {
 });
 
 gulp.task('build-styles', function() {
-  return gulp.src('./app/styles/main.scss')
-    .pipe(sass())
+  return sass('./app/styles/main.scss')
     .pipe(gulp.dest('./dist/styles/'))
     .pipe(connect.reload());
 });
