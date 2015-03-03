@@ -4,8 +4,10 @@
   "dependencies": {},
   "repository": {},
   "devDependencies": {
+    "bower": "^1.3.12",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^2.0.0",
+    "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compass": "^1.0.0",
@@ -36,6 +38,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "preinstall": "gem install compass",
+    "postinstall": "./node_modules/bower/bin/bower install",
+
+    "prestart": "npm install",
+    "start": "./node_modules/grunt-cli/bin/grunt serve",
+
     "test": "grunt test"
   }
 }

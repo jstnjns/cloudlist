@@ -24,7 +24,7 @@
     "grunt-contrib-coffee": "~0.10.1"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "npm install && node app.js",
     "debug": "node debug app.js"
   },
   "main": "app.js",
@@ -32,6 +32,5 @@
     "type": "git",
     "url": "git://github.com/justin/cloudlist.git"
   },
-  "author": "justin",
-  "license": ""
+  "author": "justin"
 }
