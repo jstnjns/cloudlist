@@ -1,5 +1,17 @@
-<div ng-include="'views/tracks/new.html'"></div>
+<div class="row">
+  <div class="col-sm-12">
+    <div ng-include="'views/tracks/new.html'"></div>
+  </div>
+</div>
 
-<div ng-include="'views/tracks/current.html'" ng-if="current"></div>
+<hr>
 
-<div ng-include="'views/tracks/list.html'"></div>
+<div class="row">
+  <div class="col-sm-9">
+    <div ng-include="'views/tracks/list.html'"></div>
+  </div>
+
+  <div class="col-sm-3">
+    <div ng-include="'views/tracks/current.html'"></div>
+  </div>
+</div>

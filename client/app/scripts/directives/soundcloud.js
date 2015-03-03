@@ -1,17 +1,17 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .directive('scEmbed', function ($http, $sce) {
+  .directive('scEmbed', function ($http) {
     return {
       scope: {
-        scEmbedUrl: '='
+        scTrackUrl: '='
       },
 
       link: function($scope, $elm, $attrs) {
 
         var widget;
 
-        SC.oEmbed($scope.scEmbedUrl, { auto_play: true }, function(oEmbed) {
+        SC.oEmbed($scope.scTrackUrl, { auto_play: true }, function(oEmbed) {
           var $player = $(oEmbed.html);
 
           widget = SC.Widget($player.get(0));
@@ -23,17 +23,30 @@ angular.module('cloudlistApp')
           $elm.html($player);
         });
 
-        // $http
-        //   .get('http://api.soundcloud.com/resolve.json?client_id=7a9b6d08ffc80df2e8eaf0300a9694ac&url=' + $scope.scEmbedUrl)
-        //   .success(function(data, status, headers, config) {
-        //     var track = data.tracks && data.tracks[0] && data.tracks[0].id || data.id;
-
-        //     SC.stream('/tracks/' + track, function(sound){
-        //       sound.play();
-        //     });
-        //   });
-
-
       }
     };
+  });
+
+
+angular.module('cloudlistApp')
+  .directive('scStream', function($http) {
+    return {
+      scope: {
+        scTrackUrl: '='
+      },
+
+      link: function($scope, $elm, $attrs) {
+
+        $http
+          .get('http://api.soundcloud.com/resolve.json?client_id=7a9b6d08ffc80df2e8eaf0300a9694ac&url=' + $scope.scTrackUrl)
+          .success(function(data, status, headers, config) {
+            var track = data.tracks && data.tracks[0] && data.tracks[0].id || data.id;
+
+            SC.stream('/tracks/' + track, function(sound){
+              sound.play();
+            });
+          });
+
+      }
+    }
   });

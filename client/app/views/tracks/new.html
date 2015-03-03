@@ -1,23 +1,18 @@
 <div ng-controller="TracksNewCtrl">
-  <div class="well">
-    <div class="form-group">
-      <label>URL</label>
-      <input type="text" class="form-control" placeholder="URL"
-        ng-model="url">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="URL"
+      ng-model="url">
 
-      <code>{{url}}</code>
-    </div>
+    <span class="input-group-btn">
+      <a class="btn btn-default"
+        ng-click="clear()">
+        Clear
+      </a>
 
-    <div class="form-group">
       <a class="btn btn-primary"
         ng-click="save()">
         Save
       </a>
-
-      <a class="btn btn-link"
-        ng-click="clear()">
-        Clear
-      </a>
-    </div>
+    </span>
   </div>
 </div>

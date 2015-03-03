@@ -2,3 +2,5 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import "bootstrap/variables";
 @import "../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+
+[ng-click] { cursor: pointer }

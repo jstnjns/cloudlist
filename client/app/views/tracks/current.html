@@ -1,10 +1,12 @@
-<div class="media">
-  <div class="pull-left">
-    <img ng-src="{{current.art}}" width="200">
-  </div>
+<div ng-if="current">
+  <img class="img-responsive" width="300" ng-src="{{current.art}}">
 
-  <div class="media-body">
-    <sc-embed
-      sc-embed-url="current.url"></sc-embed>
-  </div>
+  <h3>{{current.name}}</h3>
+
+  <!-- <sc-stream sc-track-url="current.url"></sc-stream> -->
+  <sc-embed sc-track-url="current.url"></sc-embed>
+</div>
+
+<div ng-if="!current">
+  <h3>Nothing Playing...</h3>
 </div>

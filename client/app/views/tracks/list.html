@@ -1,5 +1,7 @@
-<ol class="list-unstyled">
-  <li ng-repeat="track in tracks"
+<div class="list-group">
+  <div class="list-group-item"
+    ng-repeat="track in tracks"
     ng-controller="TrackCtrl"
-    ng-include="'views/tracks/track.html'"></li>
-</ol>
+    ng-include="'views/tracks/track.html'"
+    ng-click="play(track)"></div>
+</div>
