@@ -1,21 +1,35 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TracksNewCtrl', function ($scope, Tracks) {
+  .controller('TracksNewCtrl', function ($scope, Tracks, TracksService) {
 
 
-    $scope.url = 'balls';
+    $scope.url = '';
 
 
     $scope.save = function() {
 
-      new Tracks({ url: $scope.url })
-        .$save().then(function(track) {
+      TracksService.parseUrl('https://soundcloud.com/djfire789/phyersquad-go-back-1?in=djfire789/sets/phyersquad-thesquadlifechronicles-vol-1')
+        .success(function(data) {
 
-          $scope.tracks.push(track);
+          console.log(data);
+
+          new Tracks({
+                name: data.title,
+                art: data.artwork_url,
+                url: data.uri
+              }).$save()
+                .then(function(track) {
+                  $scope.tracks.push(track);
+                  $scope.clear();
+                });
+
+        })
+        .error(function(err) {
+          alert('There was an error.');
           $scope.clear();
+        })
 
-        });
     };
 
 

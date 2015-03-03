@@ -8,6 +8,15 @@
 module.exports = {
 
   attributes: {
+
+    name: {
+      type: 'string'
+    },
+
+    art: {
+      type: 'string',
+    },
+
     url: {
       type: 'string',
       required: true

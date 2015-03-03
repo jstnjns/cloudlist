@@ -9,4 +9,11 @@ angular.module('cloudlistApp')
       $scope.track.playing = true;
     };
 
+    $scope.destroy = function() {
+      $scope.track.$destroy()
+        .then(function() {
+          delete $scope.track;
+        });
+    }
+
   });
