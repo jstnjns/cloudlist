@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TracksNewCtrl', function ($scope, Tracks, TracksService) {
+  .controller('TracksNewCtrl', function ($scope, Tracks, SoundcloudService) {
 
 
     $scope.url = '';
@@ -11,7 +11,7 @@ angular.module('cloudlistApp')
 
       if ($scope.url == '') return;
 
-      TracksService.parseUrl($scope.url)
+      SoundcloudService.parseUrl($scope.url)
         .success(function(data) {
 
           new Tracks({

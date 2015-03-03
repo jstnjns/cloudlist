@@ -4,13 +4,11 @@ angular.module('cloudlistApp')
   .controller('TracksCtrl', function ($scope, Tracks) {
 
 
-    $scope.current = false;
+    $scope.current = null;
 
 
-    $scope.play = function(track) {
-      $scope.current = track;
-
-      track.playing = true;
+    $scope.play = function(i) {
+      $scope.current = $scope.tracks[i];
     };
 
 

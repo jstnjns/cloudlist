@@ -1,12 +1,12 @@
-<div ng-if="current">
-<!--   <img class="img-responsive" width="300" ng-src="{{current.art | scthumb:'t500x500'}}">
+<div ng-if="current !== null">
+  <img class="img-responsive" width="300" ng-src="{{current.art | scthumb:'t500x500'}}">
 
-  <h3>{{current.name}}</h3> -->
+  <h3>{{current.name}}</h3>
 
-  <!-- <sc-stream sc-track-url="current.url"></sc-stream> -->
-  <sc-embed sc-track-url="current.url"></sc-embed>
+  <sc-stream sc-track-url="current.url"></sc-stream>
+  <!-- <sc-embed sc-track-url="current.url"></sc-embed> -->
 </div>
 
-<div ng-if="!current">
+<div ng-if="current == null">
   <h3>Nothing Playing...</h3>
 </div>

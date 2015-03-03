@@ -3,7 +3,7 @@
     ng-repeat="track in tracks"
     ng-controller="TrackCtrl"
     ng-include="'views/tracks/track.html'"
-    ng-click="play(track)"
+    ng-click="play($index)"
 
     ng-class="{
       'active': track == current
