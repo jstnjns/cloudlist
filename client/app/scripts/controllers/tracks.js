@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TracksCtrl', function ($scope, Tracks) {
+  .controller('TracksCtrl', function ($scope, Tracks, Player) {
 
+    window.player = Player;
 
     var init = function() {
           $scope.current = null;
@@ -23,6 +24,9 @@ angular.module('cloudlistApp')
 
         onStateChange = function(event, state) {
           console.log('onStateChange', state);
+          $scope.$apply(function() {
+            $scope.text = (state != 'play' ? 'Play' : 'Pause');
+          });
         },
 
 
@@ -33,8 +37,8 @@ angular.module('cloudlistApp')
         },
 
 
-        toggle = $scope.toggle = function(play) {
-          $rootScope.$broadcast('state', play ? 'play' : 'pause');
+        toggle = $scope.toggle = function() {
+          Player.play(Player.state != 'play');
         };
 
 

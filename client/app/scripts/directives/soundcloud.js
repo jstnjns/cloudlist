@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .directive('scStream', function($http, SoundcloudService) {
+  .directive('scStream', function($http, SoundcloudService, Player) {
     return {
       scope: {
         scTrackUrl: '=',
@@ -11,10 +11,7 @@ angular.module('cloudlistApp')
       link: function($scope, $elm, $attrs) {
 
 
-        var audio,
-
-
-            init = function() {
+        var init = function() {
               $scope.$watch('scTrackUrl', parse);
             },
 
@@ -25,29 +22,8 @@ angular.module('cloudlistApp')
             },
 
 
-            emit = function(name) {
-              $scope.$emit('state', name);
-            },
-
-
             render = function(track) {
-              destroyAudio();
-              createAudio(track.stream_url);
-            },
-
-            createAudio = function(url) {
-              audio = new Audio();
-              audio.onplay = function() { emit('play'); };
-              audio.onpause = function() { emit('pause'); };
-              audio.src = SoundcloudService.addClient(url);
-              audio.play();
-            },
-
-            destroyAudio = function() {
-              if (audio) {
-                audio.pause();
-                audio = undefined;
-              }
+              Player.load(SoundcloudService.addClient(track.stream_url))
             };
 
 
