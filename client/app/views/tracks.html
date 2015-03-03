@@ -1,5 +1,39 @@
-<div ng-controller="TracksNewCtrl"
-  ng-include="'views/tracks/new.html'"></div>
+<div ng-controller="TracksNewCtrl">
+  <div class="well">
+    <div class="form-group">
+      <label>URL</label>
+      <input type="text" class="form-control" placeholder="URL"
+        ng-model="url">
+
+      <code>{{url}}</code>
+    </div>
+
+    <div class="form-group">
+      <a class="btn btn-primary"
+        ng-click="save()">
+        Save
+      </a>
+
+      <a class="btn btn-link"
+        ng-click="clear()">
+        Clear
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="media"
+  ng-if="current">
+
+  <div class="pull-left">
+    <img src="{{current.art}}" width="200">
+  </div>
+
+  <div class="media-body">
+    <sc-embed
+      sc-embed-url="current.url"></sc-embed>
+  </div>
+</div>
 
 <ol class="list-unstyled">
   <li ng-repeat="track in tracks"

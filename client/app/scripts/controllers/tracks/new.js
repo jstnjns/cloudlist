@@ -9,10 +9,10 @@ angular.module('cloudlistApp')
 
     $scope.save = function() {
 
-      TracksService.parseUrl('https://soundcloud.com/djfire789/phyersquad-go-back-1?in=djfire789/sets/phyersquad-thesquadlifechronicles-vol-1')
-        .success(function(data) {
+      if ($scope.url == '') return;
 
-          console.log(data);
+      TracksService.parseUrl($scope.url)
+        .success(function(data) {
 
           new Tracks({
                 name: data.title,
@@ -26,9 +26,11 @@ angular.module('cloudlistApp')
 
         })
         .error(function(err) {
+
           alert('There was an error.');
           $scope.clear();
-        })
+
+        });
 
     };
 

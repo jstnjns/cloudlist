@@ -1,7 +1,7 @@
 <div class="media">
   <div class="pull-left">
     <a class="thumbnail"
-      ng-click="play()">
+      ng-click="play(track)">
       <img ng-src="{{track.art}}" width="50">
     </a>
   </div>
@@ -14,10 +14,6 @@
 
     <h4 class="media-heading">{{track.name}}</h4>
 
-    <code ng-if="!track.playing">{{track.url}}</code>
-
-    <sc-embed
-      sc-embed-url="track.url"
-      ng-if="track.playing"></sc-embed>
+    <code>{{track.url}}</code>
   </div>
 </div>

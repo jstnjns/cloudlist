@@ -3,11 +3,9 @@
 angular.module('cloudlistApp')
   .controller('TrackCtrl', function ($scope, $sce) {
 
+
     $scope.track.playing = false;
 
-    $scope.play = function() {
-      $scope.track.playing = true;
-    };
 
     $scope.destroy = function() {
       $scope.track.$destroy()
@@ -15,5 +13,6 @@ angular.module('cloudlistApp')
           delete $scope.track;
         });
     }
+
 
   });
