@@ -4,7 +4,9 @@ angular.module('cloudlistApp')
   .controller('TrackCtrl', function ($scope, $sce) {
 
 
-    $scope.track.playing = false;
+    $scope.play = function() {
+      $scope.$emit('track', $scope.track);
+    }
 
 
     $scope.destroy = function() {

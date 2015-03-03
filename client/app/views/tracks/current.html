@@ -3,6 +3,18 @@
 
   <h3>{{current.name}}</h3>
 
+  <div class="btn-group">
+    <a class="btn btn-primary"
+      ng-click="toggle()">
+      {{text}}
+    </a>
+
+    <a class="btn btn-default"
+      ng-click="skip()">
+      Skip
+    </a>
+  </div>
+
   <sc-stream sc-track-url="current.url"></sc-stream>
   <!-- <sc-embed sc-track-url="current.url"></sc-embed> -->
 </div>

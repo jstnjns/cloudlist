@@ -6,15 +6,30 @@ angular.module('cloudlistApp')
 
     $scope.current = null;
 
+    var init = function() {
+          $scope.$on('track', onTrackChange);
+          $scope.$on('state', onStateChange);
+          fetch();
+        },
 
-    $scope.play = function(i) {
-      $scope.current = $scope.tracks[i];
-    };
+
+        onTrackChange = function(event, track) {
+          $scope.current = track;
+        },
 
 
-    Tracks.fetchAll().then(function(tracks) {
-      $scope.tracks = tracks;
-    });
+        onStateChange = function(event, state) {
+          $scope.text(state == 'playing' ? 'Pause' : 'Play');
+        },
 
+
+        fetch = function() {
+          Tracks.fetchAll().then(function(tracks) {
+            $scope.tracks = tracks;
+          });
+        };
+
+
+    init();
 
   });
