@@ -4,6 +4,8 @@
 
 [ng-click] { cursor: pointer }
 
+.show-grid { margin-bottom: 15px; }
+
 .current {
 
   .current-header {
@@ -51,7 +53,7 @@
     z-index: 1;
 
     @media screen and (min-width: $screen-sm-min) {
-      margin: -114px 0 -34px;
+      margin: -35px 0 -40px;
     }
 
     &:hover .figure-overlay { opacity: 1; }
