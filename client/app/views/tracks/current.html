@@ -1,24 +1,25 @@
-<div ng-if="current !== null">
-  <img class="img-responsive" width="300" ng-src="{{current.art | scthumb:'t500x500'}}">
+<div class="current" ng-if="current">
 
-  <h3>{{current.name}}</h3>
+  <div class="background" style="background-image: url({{current.art | scthumb:'t500x500'}});"></div>
 
-  <div class="btn-group">
-    <a class="btn btn-primary"
-      ng-click="toggle()">
-      {{text}}
-    </a>
+  <div class="controls">
+    <img class="img-responsive" width="240" ng-src="{{current.art | scthumb:'t500x500'}}">
 
-    <a class="btn btn-default"
-      ng-click="skip()">
-      Skip
-    </a>
+    <div class="btn-group">
+      <a class="btn btn-primary"
+        ng-click="toggle()">
+        {{text}}
+      </a>
+
+      <a class="btn btn-default"
+        ng-click="skip()">
+        Skip
+      </a>
+    </div>
+
+    <sc-stream sc-track-url="current.url"></sc-stream>
   </div>
 
-  <sc-stream sc-track-url="current.url"></sc-stream>
-  <!-- <sc-embed sc-track-url="current.url"></sc-embed> -->
 </div>
 
-<div ng-if="current == null">
-  <h3>Nothing Playing...</h3>
-</div>
+<hr ng-if="current">
