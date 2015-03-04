@@ -4,13 +4,18 @@ angular.module('cloudlistApp')
   .factory('Player', function($rootScope) {
 
     function Player() {
-      var p = this;
+      var audio = this.audio = new Audio();
 
-      $rootScope.$on('state', function(event, state) { p.state = state });
-
-      this.audio = new Audio();
-      this.audio.onplay = function() { $rootScope.$broadcast('state', 'play' ); };
-      this.audio.onpause = function() { $rootScope.$broadcast('state', 'pause'); };
+      this.audio.onplay = function(event) {
+        $rootScope.$broadcast('state', 'play', audio);
+      };
+      this.audio.onpause = function(event) {
+        $rootScope.$broadcast('state', 'pause', audio);
+      };
+      this.audio.ontimeupdate = function(event) {
+        console.log('time', audio.currentTime);
+        $rootScope.$broadcast('time', audio.currentTime, audio);
+      }
     };
 
     Player.prototype.get = function(key) {
