@@ -2,24 +2,25 @@
 
   <div class="background" style="background-image: url({{current.art | scthumb:'t500x500'}});"></div>
 
-  <div class="controls">
+  <div class="art">
     <img class="img-responsive" width="240" ng-src="{{current.art | scthumb:'t500x500'}}">
-
-    <div class="btn-group">
-      <a class="btn btn-primary"
-        ng-click="toggle()">
-        {{text}}
-      </a>
-
-      <a class="btn btn-default"
-        ng-click="skip()">
-        Skip
-      </a>
-    </div>
-
-    <sc-stream sc-track-url="current.url"></sc-stream>
   </div>
 
+  <div class="controls">
+    <a class="btn btn-lg btn-primary"
+      ng-click="toggle()">
+      <i class="glyphicon glyphicon-play" ng-show="state == 'pause'"></i>
+      <i class="glyphicon glyphicon-pause" ng-show="state == 'play'"></i>
+    </a>
+
+    <a class="btn btn-lg btn-default"
+      ng-click="skip()">
+      <i class="glyphicon glyphicon-step-forward"></i>
+    </a>
+
+  </div>
+
+  <sc-stream sc-track-url="current.url"></sc-stream>
 </div>
 
 <hr ng-if="current">

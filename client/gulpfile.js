@@ -4,7 +4,14 @@ var gulp = require('gulp'),
     connect = require('gulp-connect');
 
 
-gulp.task('build', ['build-views', 'build-scripts', 'build-styles', 'build-images', 'build-misc']);
+gulp.task('build', [
+  'build-views',
+  'build-scripts',
+  'build-styles',
+  'build-images',
+  'build-fonts',
+  'build-misc'
+]);
 
 gulp.task('build-views', function() {
   return gulp.src('./app/views/**/*')
@@ -12,7 +19,10 @@ gulp.task('build-views', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('build-scripts', ['build-scripts-vendor', 'build-scripts-application']);
+gulp.task('build-scripts', [
+  'build-scripts-vendor',
+  'build-scripts-application'
+]);
 
 gulp.task('build-scripts-vendor', function() {
   return gulp.src([
@@ -52,6 +62,12 @@ gulp.task('build-images', function() {
     .pipe(connect.reload());
 });
 
+gulp.task('build-fonts', function() {
+  return gulp.src('./bower_components/bootstrap-sass-official/assets/fonts/**/*')
+    .pipe(gulp.dest('./dist/fonts/'))
+    .pipe(connect.reload());
+});
+
 gulp.task('build-misc', function() {
   return gulp.src('./app/*.*')
     .pipe(gulp.dest('./dist'))
@@ -74,4 +90,8 @@ gulp.task('watch', ['build'], function() {
   gulp.watch('./app/*.*', ['build-misc']);
 })
 
-gulp.task('default', ['build', 'serve', 'watch']);
+gulp.task('default', [
+  'build',
+  'serve',
+  'watch'
+]);

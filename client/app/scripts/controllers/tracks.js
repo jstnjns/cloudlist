@@ -6,7 +6,6 @@ angular.module('cloudlistApp')
 
     var init = function() {
           $scope.current = null;
-          $scope.text = 'Play';
 
           $scope.$on('track', onTrackChange);
           $scope.$on('state', onStateChange);
@@ -25,7 +24,7 @@ angular.module('cloudlistApp')
         onStateChange = function(event, state) {
           console.log('onStateChange', state);
           $scope.$apply(function() {
-            $scope.text = (state != 'play' ? 'Play' : 'Pause');
+            $scope.state = state;
           });
         },
 
