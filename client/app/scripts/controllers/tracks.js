@@ -8,7 +8,6 @@ angular.module('cloudlistApp')
           $scope.current = null;
 
           $scope.$on('track', onTrackChange);
-          $scope.$on('state', onStateChange);
 
           fetch();
           window.setInterval(fetch, 5 * 1000);
@@ -21,27 +20,15 @@ angular.module('cloudlistApp')
         },
 
 
-        onStateChange = function(event, state) {
-          console.log('onStateChange', state);
-          $scope.$apply(function() {
-            $scope.state = state;
-          });
-        },
-
-
         fetch = function() {
           Tracks.fetchAll()
             .then(function(tracks) {
               $scope.tracks = tracks;
             });
-        },
-
-
-        toggle = $scope.toggle = function() {
-          Player.play(Player.state != 'play');
         };
 
 
     init();
+
 
   });
