@@ -26,11 +26,8 @@
       background-size: cover;
       opacity: 0.25;
 
-      -webkit-transform: scale(1.2);
-              transform: scale(1.2);
-
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
+      -webkit-filter: blur(20px);
+              filter: blur(20px);
     }
 
     .current-name { color: #fff; }
