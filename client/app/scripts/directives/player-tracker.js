@@ -7,7 +7,7 @@ angular.module('cloudlistApp')
         scAudio: '='
       },
 
-      template: '<div class="progress"></div>'
+      template: '<div class="progress"></div>',
 
       link: function($scope, $elm, $attrs) {
 
