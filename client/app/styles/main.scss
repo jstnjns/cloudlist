@@ -6,7 +6,13 @@
 
 .show-grid { margin-bottom: 15px; }
 
+body {
+  padding: 20px 0;
+}
+
 .current {
+  margin-top: -20px;
+  margin-bottom: 20px;
 
   .current-header {
     position: relative;
@@ -28,14 +34,21 @@
       background-size: cover;
       opacity: 0.25;
 
-      -webkit-transform: scale(1.2);
-              transform: scale(1.2);
-
-      -webkit-filter: blur(0px);
-              filter: blur(0px);
+      -webkit-filter: blur(20px);
+              filter: blur(20px);
     }
 
-    .current-name { color: #fff; }
+    .current-name {
+      color: #fff;
+
+      @media screen and (min-width: $screen-sm-min) {
+        height: 1.2em;
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
   }
 
   .current-info {
@@ -46,14 +59,15 @@
     line-height: 48px;
   }
 
-
   .figure-artwork {
-    position: relative;
-    display: inline-block;
-    z-index: 1;
+    @media screen and (max-width: $screen-xs-max) {
+      display: inline-block;
+    }
 
     @media screen and (min-width: $screen-sm-min) {
-      margin: -35px 0 -40px;
+      position: absolute;
+      bottom: -100px;
+      z-index: 1;
     }
 
     &:hover .figure-overlay { opacity: 1; }
