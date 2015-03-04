@@ -4,7 +4,13 @@
 
 [ng-click] { cursor: pointer }
 
+body {
+  padding: 20px 0;
+}
+
 .current {
+  margin-top: -20px;
+  margin-bottom: 20px;
 
   .current-header {
     position: relative;
