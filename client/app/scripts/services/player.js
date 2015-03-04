@@ -12,6 +12,9 @@ angular.module('cloudlistApp')
       this.audio.onpause = function(event) {
         $rootScope.$broadcast('state', 'pause', audio);
       };
+      this.audio.onended = function(event) {
+        $rootScope.$broadcast('state', 'ended', audio);
+      };
       this.audio.ontimeupdate = function(event) {
         console.log('time', audio.currentTime);
         $rootScope.$broadcast('time', audio.currentTime, audio);
