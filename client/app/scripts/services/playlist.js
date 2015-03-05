@@ -14,22 +14,23 @@ angular.module('cloudlistApp')
     };
 
     Playlist.prototype.play = function(i) {
-      if (!this.tracks[i]) return false;
+      var track = this.tracks[i];
+
+      if (!track) return false;
+
+      $rootScope.$broadcast('track', track);
 
       this.current = i;
-      this.player.load(this.tracks[i]);
+      this.player.load(this.tracks[i].url);
     };
 
     Playlist.prototype.next = function() {
-      this.player.play(this.current++);
+      console.log('next', this.current + 1);
+      this.play(this.current + 1);
     };
 
     Playlist.prototype.previous = function() {
-      this.player.play(this.current--);
-    };
-
-    Playlist.prototype.get = function(key) {
-      return this[key];
+      this.play(this.current - 1);
     };
 
     return new Playlist();

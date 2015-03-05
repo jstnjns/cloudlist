@@ -6,7 +6,7 @@
     ng-controller="TrackCtrl"
     ng-include="'views/tracks/track.html'"
 
-    ng-click="play()"
+    ng-click="play($index)"
     ng-class="{
       'active': track.id == current.id
     }"></a>
