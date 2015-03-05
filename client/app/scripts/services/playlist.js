@@ -5,7 +5,7 @@ angular.module('cloudlistApp')
 
     function Playlist() {
       this.tracks = [];
-      this.current = 0;
+      this.current = null;
       this.player = Player;
     };
 
@@ -25,12 +25,15 @@ angular.module('cloudlistApp')
     };
 
     Playlist.prototype.next = function() {
-      console.log('next', this.current + 1);
-      this.play(this.current + 1);
+      this.play(++this.current);
     };
 
     Playlist.prototype.previous = function() {
-      this.play(this.current - 1);
+      this.play(--this.current);
+    };
+
+    Playlist.prototype.add = function(track) {
+      this.tracks.push(track);
     };
 
     return new Playlist();

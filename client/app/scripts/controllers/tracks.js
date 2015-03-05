@@ -4,7 +4,7 @@ angular.module('cloudlistApp')
   .controller('TracksCtrl', function ($scope, Tracks, Playlist) {
 
     var init = function() {
-          $scope.current = null;
+          $scope.playlist = Playlist;
 
           $scope.$on('state', onStateChange);
 
@@ -23,8 +23,7 @@ angular.module('cloudlistApp')
         fetch = function() {
           Tracks.fetchAll()
             .then(function(tracks) {
-              $scope.playlist = Playlist.load(tracks);
-              $scope.tracks = tracks;
+              Playlist.load(tracks);
             });
         };
 

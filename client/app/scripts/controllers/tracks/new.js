@@ -1,14 +1,11 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TracksNewCtrl', function ($scope, Tracks, SoundcloudService) {
-
+  .controller('TracksNewCtrl', function ($scope, Tracks, SoundcloudService, Playlist) {
 
     $scope.url = '';
 
-
     $scope.save = function() {
-
       if ($scope.url == '') return;
 
       SoundcloudService.parseUrl($scope.url)
@@ -22,24 +19,19 @@ angular.module('cloudlistApp')
                 url: data.uri
               }).$save()
                 .then(function(track) {
-                  $scope.tracks.push(track);
+                  Playlist.add(track);
                   $scope.clear();
                 });
 
         })
         .error(function(err) {
-
           alert('There was an error.');
           $scope.clear();
-
         });
-
     };
-
 
     $scope.clear = function() {
       $scope.url = '';
     };
-
 
   });

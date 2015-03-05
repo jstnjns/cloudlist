@@ -1,20 +1,20 @@
 <div class="list-group"
-  ng-show="tracks.length > 0">
+  ng-show="playlist.tracks.length > 0">
 
   <a class="list-group-item"
-    ng-repeat="track in tracks"
+    ng-repeat="track in playlist.tracks"
     ng-controller="TrackCtrl"
     ng-include="'views/tracks/track.html'"
 
     ng-click="play($index)"
     ng-class="{
-      'active': track.id == current.id
+      'active': $index == playlist.current
     }"></a>
 
 </div>
 
 <div class="well"
-  ng-show="tracks.length < 1">
+  ng-show="playlist.tracks.length < 1">
   <h4>No Tracks</h4>
   <p>Add some!</p>
 </div>
