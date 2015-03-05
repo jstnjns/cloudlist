@@ -1,13 +1,14 @@
 <div ng-controller="TracksNewCtrl">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="URL"
-      ng-model="url">
+  <form ng-submit="save()">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="URL"
+        ng-model="url">
 
-    <span class="input-group-btn">
-      <a class="btn btn-primary"
-        ng-click="save()">
-        Add
-      </a>
-    </span>
-  </div>
+      <span class="input-group-btn">
+        <a class="btn btn-primary">
+          Add
+        </a>
+      </span>
+    </div>
+  </form>
 </div>
