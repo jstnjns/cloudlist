@@ -11,7 +11,6 @@ angular.module('cloudlistApp')
 
 
         onStateChange = function(event, state) {
-          console.log('onStateChange', state);
           $scope.$apply(function() {
             $scope.state = state;
           });
@@ -19,7 +18,6 @@ angular.module('cloudlistApp')
 
 
         onTimeChange = function(event, time, audio) {
-          console.log('onTimeChange', time);
           $scope.$apply(function() {
             $scope.progress = {
               time: Math.floor(time),
