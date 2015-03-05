@@ -4,24 +4,34 @@ angular.module('cloudlistApp')
   .factory('Player', function($rootScope, SoundcloudService) {
 
     function Player() {
-      var audio = this.audio = new Audio();
+      var p = this;
+
+      this.audio = new Audio()
 
       this.audio.onplay = function(event) {
-        $rootScope.$broadcast('state', 'play', audio);
+        $rootScope.$broadcast('state', 'play', p.audio);
+        p.state = 'playing';
       };
       this.audio.onpause = function(event) {
-        $rootScope.$broadcast('state', 'pause', audio);
+        $rootScope.$broadcast('state', 'pause', p.audio);
+        p.state = 'paused';
       };
       this.audio.onended = function(event) {
-        $rootScope.$broadcast('state', 'ended', audio);
+        $rootScope.$broadcast('state', 'ended', p.audio);
+        p.state = 'ended';
       };
       this.audio.ontimeupdate = function(event) {
-        $rootScope.$broadcast('time', audio.currentTime, audio);
+        $rootScope.$broadcast('time', p.audio.currentTime, p.audio);
       }
+
+      $(document.body).keyup(this._keyup);
     };
 
-    Player.prototype.get = function(key) {
-      return this[key];
+    Player.prototype._keyup = function(event) {
+      switch(event.keyCode) {
+        case 32:
+
+      }
     };
 
     Player.prototype.load = function(src) {
@@ -35,12 +45,16 @@ angular.module('cloudlistApp')
         });
     };
 
+    Player.prototype.toggle = function() {
+      this.audio[this.state != 'playing' ? 'play' : 'pause']();
+    };
+
     Player.prototype.play = function(play) {
-      this.audio[(play || play == undefined) ? 'play' : 'pause']();
+      this.audio.play();
     };
 
     Player.prototype.pause = function() {
-      this.play(false);
+      this.audio.pause();
     };
 
     Player.prototype.position = function(percent) {

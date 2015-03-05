@@ -28,7 +28,7 @@ angular.module('cloudlistApp')
 
 
         toggle = $scope.toggle = function() {
-          Player.play($scope.state != 'play');
+          Player.toggle();
         };
 
 
