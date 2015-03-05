@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TrackCtrl', function ($scope, $sce) {
+  .controller('TrackCtrl', function ($scope, Playlist) {
 
-    $scope.play = function() {
-      $scope.$emit('track', $scope.track);
-    }
+    $scope.play = function(i) {
+      Playlist.play(i);
+    };
 
   });

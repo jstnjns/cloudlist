@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .factory('Player', function($rootScope) {
+  .factory('Player', function($rootScope, SoundcloudService) {
 
     function Player() {
       var audio = this.audio = new Audio();
@@ -12,8 +12,10 @@ angular.module('cloudlistApp')
       this.audio.onpause = function(event) {
         $rootScope.$broadcast('state', 'pause', audio);
       };
+      this.audio.onended = function(event) {
+        $rootScope.$broadcast('state', 'ended', audio);
+      };
       this.audio.ontimeupdate = function(event) {
-        console.log('time', audio.currentTime);
         $rootScope.$broadcast('time', audio.currentTime, audio);
       }
     };
@@ -23,8 +25,14 @@ angular.module('cloudlistApp')
     };
 
     Player.prototype.load = function(src) {
-      this.audio.src = src;
-      this.play();
+      var p = this;
+
+      SoundcloudService
+        .parseUrl(src)
+        .success(function(track) {
+          p.audio.src = SoundcloudService.addClient(track.stream_url)
+          p.play();
+        });
     };
 
     Player.prototype.play = function(play) {
