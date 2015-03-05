@@ -12,19 +12,13 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body ng-app="cloudlistApp">
-    <div id="header">
-      <div ng-include="'views/tracks/current.html'"></div>
-    </div>
+    <div id="header" ng-include="'views/tracks/current.html'"></div>
 
     <div id="content">
       <div class="container" ng-view=""></div>
     </div>
 
-    <div id="footer">
-      <div class="container">
-      </div>
-    </div>
-
+    <div id="footer" ng-include="'views/tracks/new.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

@@ -8,12 +8,19 @@
 .show-grid { margin-bottom: 15px; }
 
 body {
-  padding: 20px 0;
+  @media screen and (min-width: $screen-sm-min) {
+    padding: 340px 0 70px;
+  }
 }
 
-.current {
-  margin-top: -20px;
+#header {
   margin-bottom: 20px;
+  @media screen and (min-width: $screen-sm-min) {
+    position: fixed;
+    left: 0; top: 0;
+    width: 100%;
+    z-index: 10;
+  }
 
   .current-header {
     position: relative;
@@ -85,4 +92,18 @@ body {
     background: rgba(0,0,0,0.9);
     opacity: 0;
   }
+}
+
+#footer {
+  padding: 10px 0;
+
+  background: #f1f1f1;
+
+  @media screen and (min-width: $screen-sm-min) {
+    position: fixed;
+    left: 0; bottom: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
 }
