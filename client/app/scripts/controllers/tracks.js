@@ -6,15 +6,10 @@ angular.module('cloudlistApp')
     var init = function() {
           $scope.current = null;
 
-          $scope.$on('track', onTrackChange);
           $scope.$on('state', onStateChange);
 
           fetch();
           window.setInterval(fetch, 5 * 1000);
-        },
-
-        onTrackChange = function(event, track) {
-          $scope.current = track;
         },
 
         // TODO JJ: Move this functionality into the Playlist.

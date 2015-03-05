@@ -13,11 +13,11 @@
   </head>
   <body ng-app="cloudlistApp">
     <div id="header">
-      <div class="container"></div>
+      <div ng-include="'views/tracks/current.html'"></div>
     </div>
 
     <div id="content">
-      <div ng-view=""></div>
+      <div class="container" ng-view=""></div>
     </div>
 
     <div id="footer">
