@@ -33,7 +33,11 @@ angular.module('cloudlistApp')
 
     Player.prototype.pause = function() {
       this.play(false);
-    }
+    };
+
+    Player.prototype.position = function(percent) {
+      this.audio.currentTime = this.audio.duration * percent;
+    };
 
     return new Player();
 

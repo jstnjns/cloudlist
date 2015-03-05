@@ -11,7 +11,6 @@ angular.module('cloudlistApp')
 
 
         onStateChange = function(event, state) {
-          console.log('onStateChange', state);
           $scope.$apply(function() {
             $scope.state = state;
           });
@@ -19,7 +18,6 @@ angular.module('cloudlistApp')
 
 
         onTimeChange = function(event, time, audio) {
-          console.log('onTimeChange', time);
           $scope.$apply(function() {
             $scope.progress = {
               time: Math.floor(time),
@@ -32,6 +30,22 @@ angular.module('cloudlistApp')
         toggle = $scope.toggle = function() {
           Player.play($scope.state != 'play');
         };
+
+
+    var $progress = $('.progress'),
+        $bar = $('.progress-bar', $progress);
+
+
+    $progress.on('click', function(event) {
+      var progLeft = $progress.offset().left,
+          progWidth = $progress.width(),
+          clickLeft = event.clientX,
+          diffLeft = clickLeft - progLeft,
+
+          percent = diffLeft / progWidth;
+
+      Player.position(percent);
+    });
 
 
     init();
