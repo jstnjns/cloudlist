@@ -32,22 +32,6 @@ angular.module('cloudlistApp')
         };
 
 
-    var $progress = $('.progress'),
-        $bar = $('.progress-bar', $progress);
-
-
-    $progress.on('click', function(event) {
-      var progLeft = $progress.offset().left,
-          progWidth = $progress.width(),
-          clickLeft = event.clientX,
-          diffLeft = clickLeft - progLeft,
-
-          percent = diffLeft / progWidth;
-
-      Player.position(percent);
-    });
-
-
     init();
 
 
