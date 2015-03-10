@@ -36,7 +36,8 @@ gulp.task('build-scripts-vendor', function() {
       './bower_components/angular-route/angular-route.js',
       './bower_components/angular-sanitize/angular-sanitize.js',
       './bower_components/angular-touch/angular-touch.js',
-      './bower_components/angular-activerecord/src/angular-activerecord.js'
+      './bower_components/angular-activerecord/src/angular-activerecord.js',
+      './bower_components/lodash/lodash.js'
     ])
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('./dist/scripts'));
