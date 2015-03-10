@@ -6,8 +6,8 @@ angular.module('cloudlistApp')
     function Player() {
       var p = this;
 
-      this.audio = new Audio()
-      this.savedVolume = 1,
+      this.audio = new Audio();
+      this.savedVolume = 1;
       this.isTweening = false;
 
       this.audio.onplay = function(event) {
