@@ -9,26 +9,14 @@
 
           <div class="figure figure-artwork">
             <img class="img-responsive" width="240" ng-src="{{(current.art | scthumb:'t500x500') || 'http://static.tumblr.com/qmraazf/ps5mjrmim/unknown-album.png'}}">
-
-            <div class="figure-overlay">
-              <a class="btn btn-lg btn-primary"
-                ng-click="toggle()">
-                <i class="glyphicon glyphicon-play" ng-show="state != 'play'"></i>
-                <i class="glyphicon glyphicon-pause" ng-show="state == 'play'"></i>
-              </a>
-
-              <a class="btn btn-lg btn-default"
-                ng-click="skip()">
-                <i class="glyphicon glyphicon-step-forward"></i>
-              </a>
-            </div>
           </div>
 
         </div>
 
-        <div class="col-sm-8 col-md-9">
+        <div class="col-sm-7 col-md-8">
           <h2 class="current-name">{{current.name || 'CloudList'}}</h2>
         </div>
+
       </div>
     </div>
   </div>
@@ -36,7 +24,21 @@
   <div class="current-info">
     <div class="container">
       <div class="row">
-        <div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2">
+        <div class="col-sm-2 col-sm-offset-3 col-md-offset-2">
+          <div class="btn-group btn-group-sm">
+            <a class="btn btn-lg btn-primary"
+              ng-click="toggle()">
+              <i class="glyphicon glyphicon-play" ng-show="state != 'play'"></i>
+              <i class="glyphicon glyphicon-pause" ng-show="state == 'play'"></i>
+            </a>
+
+            <a class="btn btn-lg btn-default"
+              ng-click="skip()">
+              <i class="glyphicon glyphicon-step-forward"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-7 col-md-8">
 
           <pl-tracker pl-tracker-value="progress.percent"></pl-tracker>
 
