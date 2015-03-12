@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     sass = require('gulp-sass'),
+    prefixer = require('gulp-autoprefixer'),
     connect = require('gulp-connect');
 
 
@@ -53,6 +54,7 @@ gulp.task('build-scripts-application', function() {
 gulp.task('build-styles', function() {
   return gulp.src('./app/styles/main.scss')
     .pipe(sass())
+    .pipe(prefixer())
     .pipe(gulp.dest('./dist/styles/'))
     .pipe(connect.reload());
 });
