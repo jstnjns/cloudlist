@@ -10,13 +10,13 @@ angular.module('cloudlistApp')
 
       SoundcloudService.parseUrl($scope.url)
         .success(function(data) {
-
           if (!SoundcloudService.isTrack(data)) return;
 
           new Tracks({
                 name: data.title,
                 art: data.artwork_url,
-                url: data.uri
+                url: data.uri,
+                meta: data
               }).$save()
                 .then(function(track) {
                   Playlist.add(track);
@@ -28,6 +28,7 @@ angular.module('cloudlistApp')
           alert('There was an error.');
           $scope.clear();
         });
+
     };
 
     $scope.clear = function() {

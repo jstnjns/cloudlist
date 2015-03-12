@@ -7,4 +7,8 @@ angular.module('cloudlistApp')
       Playlist.play(i);
     };
 
+    $scope.preventBubble = function(event) {
+      event.stopPropagation();
+    };
+
   });
