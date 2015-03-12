@@ -24,24 +24,21 @@
   <div class="current-info">
     <div class="container">
       <div class="row">
-        <div class="col-sm-2 col-sm-offset-3 col-md-offset-2">
-          <div class="btn-group btn-group-sm">
-            <a class="btn btn-lg btn-primary"
-              ng-click="toggle()">
-              <i class="glyphicon glyphicon-play" ng-show="state != 'play'"></i>
-              <i class="glyphicon glyphicon-pause" ng-show="state == 'play'"></i>
-            </a>
+        <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10">
+          <div class="media">
+            <div class="pull-left">
+              <a class="btn btn-sm btn-primary"
+                ng-click="toggle()">
+                <i class="glyphicon glyphicon-play" ng-show="state != 'play'"></i>
+                <i class="glyphicon glyphicon-pause" ng-show="state == 'play'"></i>
+              </a>
+            </div>
 
-            <a class="btn btn-lg btn-default"
-              ng-click="skip()">
-              <i class="glyphicon glyphicon-step-forward"></i>
-            </a>
+            <div class="media-body">
+              <pl-tracker pl-tracker-value="progress.percent"></pl-tracker>
+              <span class="label label-default">{{(progress.time | toMinSec)}}</span>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-7 col-md-8">
-
-          <pl-tracker pl-tracker-value="progress.percent"></pl-tracker>
-
         </div>
       </div>
     </div>
