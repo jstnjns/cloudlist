@@ -1,11 +1,29 @@
 {
   "name": "cloud-list",
   "version": "0.0.1",
-  "keywords": [],
+  "description": "Communal playlists for SoundCloud users that want to share new music.",
+  "author": "justin",
+  "main": "app.js",
+  "keywords": [
+    "soundcloud",
+    "share",
+    "audo"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justin/cloudlist.git"
+  },
+
+  "engines": {
+    "node": "0.10.x"
+  },
+
   "dependencies": {
     "sails": "~0.10.5",
     "sails-disk": "~0.10.0"
   },
+
   "devDependencies": {
     "bower": "^1.3.12",
     "gulp": "^3.8.11",
@@ -16,16 +34,13 @@
     "gulp-ftp": "^1.0.3",
     "gulp-sass": "^1.3.3",
     "gulp-util": "^3.0.4"
-    },
+  },
+
   "scripts": {
     "preinstall": "npm install -g bower && npm install -g forever",
     "prestart": "npm install && bower install",
     "start": "gulp build && forever app.js"
   },
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/justin/cloudlist.git"
-  },
-  "author": "justin"
+
+  "license": "MIT"
 }
