@@ -1,8 +1,6 @@
 {
   "name": "cloudlist",
-  "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
+  "version": "0.0.1",
   "keywords": [],
   "dependencies": {
     "sails": "~0.10.5",
