@@ -1,7 +1,9 @@
 var gulp = require('gulp'),
+    util = require('gulp-util'),
     concat = require('gulp-concat'),
     sass = require('gulp-sass'),
     prefixer = require('gulp-autoprefixer'),
+    ftp = require('gulp-ftp'),
     connect = require('gulp-connect');
 
 
@@ -92,6 +94,16 @@ gulp.task('watch', ['build'], function() {
   gulp.watch('./app/images/**/*', ['build-images']);
   gulp.watch('./app/*.*', ['build-misc']);
 })
+
+gulp.task('deploy', ['build'], function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ftp({
+      host: 'ftp.jstnjns.com',
+      user: 'cloudlist@jstnjns.com',
+      pass: 'ksWyVM3XBhMGi8'
+    }))
+    .pipe(util.noop());
+});
 
 gulp.task('default', [
   'build',
