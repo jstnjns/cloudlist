@@ -22,19 +22,8 @@ module.exports = {
       required: true
     },
 
-    is_played: {
-      type: 'boolean',
-      defaultsTo: false
-    },
-
-    is_skipped: {
-      type: 'boolean',
-      defaultsTo: false
-    },
-
-    is_liked: {
-      type: 'boolean',
-      defaultsTo: false
+    meta: {
+      type: 'json'
     }
   }
 

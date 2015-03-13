@@ -9,7 +9,7 @@ angular.module('cloudlistApp')
           $scope.$on('state', onStateChange);
 
           fetch();
-          window.setInterval(fetch, 5 * 1000);
+          window.setInterval(fetch, 15000);
         },
 
         // TODO JJ: Move this functionality into the Playlist.

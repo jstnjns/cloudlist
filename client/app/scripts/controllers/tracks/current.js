@@ -32,6 +32,15 @@ angular.module('cloudlistApp')
           Player.toggle();
         };
 
+        $scope.convertDuration = function() {
+          if (!$scope.current || !$scope.current.meta) {
+            return false;
+          }
+
+          return Math.floor($scope.current.meta.duration / 1000);
+
+        };
+
     init();
 
   });

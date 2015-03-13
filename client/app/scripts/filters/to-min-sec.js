@@ -27,7 +27,7 @@ angular.module('cloudlistApp')
       // Whatever is leftover are the seconds
       seconds = input % 60;
 
-      if (minutes < 10) minutes = "0" + minutes;
+      if (minutes < 10 && hours > 0) minutes = "0" + minutes;
       if (seconds < 10) seconds = "0" + seconds;
 
       if (hours == 0) {

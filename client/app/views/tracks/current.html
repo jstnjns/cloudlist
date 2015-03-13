@@ -27,7 +27,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 col-md-10">
           <div class="media">
             <div class="pull-left">
-              <a class="btn btn-sm btn-primary"
+              <a class="btn btn-xs btn-primary"
                 ng-click="toggle()">
                 <i class="glyphicon glyphicon-play" ng-show="state != 'play'"></i>
                 <i class="glyphicon glyphicon-pause" ng-show="state == 'play'"></i>
@@ -36,7 +36,9 @@
 
             <div class="media-body">
               <pl-tracker pl-tracker-value="progress.percent"></pl-tracker>
-              <span class="label label-default">{{(progress.time | toMinSec)}}</span>
+              <span class="label label-default">{{(progress.time | toMinSec) || '0:00'}}</span>
+              <span class="label label-default pull-right"
+                ng-show="current.meta.duration">{{convertDuration() | toMinSec}}</span>
             </div>
           </div>
         </div>
