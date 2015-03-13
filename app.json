@@ -1,0 +1,6 @@
+{
+  "name": "cloud-list",
+  "description": "Communal playlists for SoundCloud users that want to share new music.",
+  "repository": "git://github.com/justin/cloudlist.git",
+  "keywords": ["soundcloud", "share", "audo"]
+}
