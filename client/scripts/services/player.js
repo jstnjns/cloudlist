@@ -32,7 +32,6 @@ angular.module('cloudlistApp')
     };
 
     Player.prototype._keydown = function(event) {
-      console.log(event.keyCode);
       switch(event.keyCode) {
         case 32:
           this.toggle();

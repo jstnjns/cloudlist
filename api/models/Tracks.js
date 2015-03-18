@@ -19,6 +19,7 @@ module.exports = {
 
     url: {
       type: 'string',
+      unique: true,
       required: true
     },
 

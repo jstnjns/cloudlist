@@ -6,18 +6,8 @@ angular.module('cloudlistApp')
     var init = function() {
           $scope.playlist = Playlist;
 
-          $scope.$on('state', onStateChange);
-
           fetch();
           window.setInterval(fetch, 15000);
-        },
-
-        // TODO JJ: Move this functionality into the Playlist.
-        onStateChange = function(event, state) {
-          switch(state) {
-            case 'ended':
-              Playlist.next();
-          }
         },
 
         fetch = function() {

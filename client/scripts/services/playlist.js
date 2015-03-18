@@ -5,8 +5,19 @@ angular.module('cloudlistApp')
 
     function Playlist() {
       this.tracks = [];
-      this.current = null;
+      this.currentTrack = null;
+      this.shuffle = false;
+      this.repeat = false;
       this.player = Player;
+
+      var pl = this;
+
+      $rootScope.$on('state', function(event, state) {
+        switch(state) {
+          case 'ended':
+            pl.continue();
+        }
+      });
     };
 
     Playlist.prototype.load = function(tracks) {
@@ -20,16 +31,32 @@ angular.module('cloudlistApp')
 
       $rootScope.$broadcast('track', track);
 
-      this.current = i;
+      this.currentTrack = i;
       this.player.load(this.tracks[i].url);
     };
 
-    Playlist.prototype.next = function() {
-      this.play(++this.current);
+    Playlist.prototype.continue = function() {
+      if (this.shuffle) this.random();
+      if (this.repeat) this.replay();
+      else this.next();
+    };
+
+    Playlist.prototype.next = function(options) {
+      this.play(++this.currentTrack);
     };
 
     Playlist.prototype.previous = function() {
-      this.play(--this.current);
+      this.play(--this.currentTrack);
+    };
+
+    Playlist.prototype.random = function() {
+      var random = Math.floor(Math.random() * this.tracks.length);
+
+      this.play(random);
+    };
+
+    Playlist.prototype.replay = function() {
+      this.play(this.currentTrack);
     };
 
     Playlist.prototype.add = function(track) {
