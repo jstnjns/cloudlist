@@ -42,17 +42,14 @@ angular.module('cloudlistApp')
     };
 
     Player.prototype.load = function(src) {
-      var p          = this,
-          fromVolume = this.audio.volume;
+      var p = this;
 
-      this.savedVolume = fromVolume;
       this.tweenVolume(this.audio.volume, 0, function(){
         SoundcloudService
           .parseUrl(src)
           .success(function(track) {
             p.audio.src = SoundcloudService.addClient(track.stream_url);
             p.play();
-            p.tweenVolume(0, 1);
           });
       });
     };
