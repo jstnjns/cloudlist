@@ -6,13 +6,13 @@ angular.module('cloudlistApp')
     function Playlist() {
       this.tracks = [];
       this.currentTrack = null;
-      this.isRandom = false;
+      this.shuffle = false;
+      this.repeat = false;
       this.player = Player;
 
       var pl = this;
 
       $rootScope.$on('state', function(event, state) {
-        console.log('state', state);
         switch(state) {
           case 'ended':
             pl.continue();
@@ -36,7 +36,8 @@ angular.module('cloudlistApp')
     };
 
     Playlist.prototype.continue = function() {
-      if (this.isRandom) this.random();
+      if (this.shuffle) this.random();
+      if (this.repeat) this.replay();
       else this.next();
     };
 
@@ -52,6 +53,10 @@ angular.module('cloudlistApp')
       var random = Math.floor(Math.random() * this.tracks.length);
 
       this.play(random);
+    };
+
+    Playlist.prototype.replay = function() {
+      this.play(this.currentTrack);
     };
 
     Playlist.prototype.add = function(track) {

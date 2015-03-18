@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('CurrentCtrl', function ($scope, Tracks, Player) {
+  .controller('CurrentCtrl', function ($scope, Tracks, Player, Playlist) {
 
     var init = function() {
+          $scope.shuffle = Playlist.shuffle;
+
           $scope.$on('track', onTrackChange);
           $scope.$on('state', onStateChange);
           $scope.$on('time', onTimeChange);
@@ -26,20 +28,28 @@ angular.module('cloudlistApp')
               percent: time / audio.duration * 100
             };
           });
-        },
-
-        toggle = $scope.toggle = function() {
-          Player.toggle();
         };
 
-        $scope.convertDuration = function() {
-          if (!$scope.current || !$scope.current.meta) {
-            return false;
-          }
+    $scope.toggleState = function() {
+      Player.toggle();
+    };
 
-          return Math.floor($scope.current.meta.duration / 1000);
+    $scope.toggleShuffle = function() {
+      $scope.shuffle = Playlist.shuffle = !Playlist.shuffle;
+    };
 
-        };
+    $scope.toggleRepeat = function() {
+      $scope.repeat = Playlist.repeat = !Playlist.repeat;
+    };
+
+    $scope.convertDuration = function() {
+      if (!$scope.current || !$scope.current.meta) {
+        return false;
+      }
+
+      return Math.floor($scope.current.meta.duration / 1000);
+
+    };
 
     init();
 
