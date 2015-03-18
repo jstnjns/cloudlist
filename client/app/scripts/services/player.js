@@ -42,14 +42,19 @@ angular.module('cloudlistApp')
     };
 
     Player.prototype.load = function(src) {
-      var p = this;
+      var p          = this,
+          fromVolume = this.audio.volume;
 
-      SoundcloudService
-        .parseUrl(src)
-        .success(function(track) {
-          p.audio.src = SoundcloudService.addClient(track.stream_url)
-          p.play();
-        });
+      this.savedVolume = fromVolume;
+      this.tweenVolume(this.audio.volume, 0, function(){
+        SoundcloudService
+          .parseUrl(src)
+          .success(function(track) {
+            p.audio.src = SoundcloudService.addClient(track.stream_url);
+            p.play();
+            p.tweenVolume(0, 1);
+          });
+      });
     };
 
     Player.prototype.toggle = function() {
@@ -58,11 +63,8 @@ angular.module('cloudlistApp')
 
     Player.prototype.play = function(play) {
 
-      var fromVolume = this.audio.volume,
-          toVolume   = this.savedVolume;
-
       this.audio.play();
-      this.tweenVolume(fromVolume, toVolume);
+      this.tweenVolume(0, 1);
 
     };
 
@@ -73,7 +75,7 @@ angular.module('cloudlistApp')
       this.isTweening = true;
 
       var difference    = toVolume - fromVolume,
-          increment     = (difference / 10),
+          increment     = (difference / 4),
           p             = this,
           tweenInterval = setInterval(function(){
             if (p.audio.volume == toVolume) {
@@ -89,16 +91,11 @@ angular.module('cloudlistApp')
             if (newVolume < 0) { newVolume = 0 };
             if (newVolume > 1) { newVolume = 1 };
             p.audio.volume = newVolume;
-          }, 20);
+          }, 50);
     };
 
     Player.prototype.pause = function() {
-      // lower the volume
-      var fromVolume = this.audio.volume,
-          toVolume   = 0;
-
-      this.savedVolume = this.audio.volume;
-      this.tweenVolume(fromVolume, toVolume, function(){
+      this.tweenVolume(1, 0, function(){
         // done!
         this.audio.pause();
       });
