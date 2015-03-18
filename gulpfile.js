@@ -6,6 +6,10 @@ var gulp = require('gulp'),
     ftp = require('gulp-ftp'),
     connect = require('gulp-connect');
 
+gulp.task('default', [
+  'build',
+  'watch'
+]);
 
 gulp.task('build', [
   'build-views',
@@ -79,14 +83,6 @@ gulp.task('build-misc', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('serve', ['build'], function() {
-  connect.server({
-    root: '.tmp/public',
-    port: 9000,
-    livereload: true
-  });
-});
-
 gulp.task('watch', ['build'], function() {
   gulp.watch('./client/views/**/*', ['build-views']);
   gulp.watch('./client/scripts/**/*', ['build-scripts']);
@@ -104,9 +100,3 @@ gulp.task('deploy', ['build'], function() {
     }))
     .pipe(util.noop());
 });
-
-gulp.task('default', [
-  'build',
-  'serve',
-  'watch'
-]);
