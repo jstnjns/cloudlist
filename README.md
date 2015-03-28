@@ -3,16 +3,9 @@ Communal playlists for SoundCloud users that want to share new music.
 
 ## Setup
 
-### Server
-
 ```
 $ cd server
 $ npm start
 ```
 
-### Client
-
-```
-$ cd client
-$ npm start
-```
+This will take care of installing any NPM modules and Bower components.
