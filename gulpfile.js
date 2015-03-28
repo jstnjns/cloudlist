@@ -6,6 +6,10 @@ var gulp = require('gulp'),
     ftp = require('gulp-ftp'),
     connect = require('gulp-connect');
 
+gulp.task('default', [
+  'build',
+  'watch'
+]);
 
 gulp.task('build', [
   'build-views',
@@ -17,8 +21,8 @@ gulp.task('build', [
 ]);
 
 gulp.task('build-views', function() {
-  return gulp.src('./app/views/**/*')
-    .pipe(gulp.dest('./dist/views/'))
+  return gulp.src('./client/views/**/*')
+    .pipe(gulp.dest('./.tmp/public/views/'))
     .pipe(connect.reload());
 });
 
@@ -43,60 +47,52 @@ gulp.task('build-scripts-vendor', function() {
       './bower_components/lodash/lodash.js'
     ])
     .pipe(concat('vendor.js'))
-    .pipe(gulp.dest('./dist/scripts'));
+    .pipe(gulp.dest('./.tmp/public/scripts'));
 })
 
 gulp.task('build-scripts-application', function() {
-  return gulp.src('./app/scripts/**/*')
+  return gulp.src('./client/scripts/**/*')
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('./dist/scripts'))
+    .pipe(gulp.dest('./.tmp/public/scripts'))
     .pipe(connect.reload());
 });
 
 gulp.task('build-styles', function() {
-  return gulp.src('./app/styles/main.scss')
+  return gulp.src('./client/styles/main.scss')
     .pipe(sass())
     .pipe(prefixer())
-    .pipe(gulp.dest('./dist/styles/'))
+    .pipe(gulp.dest('./.tmp/public/styles/'))
     .pipe(connect.reload());
 });
 
 gulp.task('build-images', function() {
-  return gulp.src('./app/images/**/*')
-    .pipe(gulp.dest('./dist/images'))
+  return gulp.src('./client/images/**/*')
+    .pipe(gulp.dest('./.tmp/public/images'))
     .pipe(connect.reload());
 });
 
 gulp.task('build-fonts', function() {
   return gulp.src('./bower_components/bootstrap-sass-official/assets/fonts/**/*')
-    .pipe(gulp.dest('./dist/fonts/'))
+    .pipe(gulp.dest('./.tmp/public/fonts/'))
     .pipe(connect.reload());
 });
 
 gulp.task('build-misc', function() {
-  return gulp.src('./app/*.*')
-    .pipe(gulp.dest('./dist'))
+  return gulp.src('./client/*.*')
+    .pipe(gulp.dest('./.tmp/public'))
     .pipe(connect.reload());
 });
 
-gulp.task('serve', ['build'], function() {
-  connect.server({
-    root: 'dist',
-    port: 9000,
-    livereload: true
-  });
-});
-
 gulp.task('watch', ['build'], function() {
-  gulp.watch('./app/views/**/*', ['build-views']);
-  gulp.watch('./app/scripts/**/*', ['build-scripts']);
-  gulp.watch('./app/styles/**/*', ['build-styles']);
-  gulp.watch('./app/images/**/*', ['build-images']);
-  gulp.watch('./app/*.*', ['build-misc']);
+  gulp.watch('./client/views/**/*', ['build-views']);
+  gulp.watch('./client/scripts/**/*', ['build-scripts']);
+  gulp.watch('./client/styles/**/*', ['build-styles']);
+  gulp.watch('./client/images/**/*', ['build-images']);
+  gulp.watch('./client/*.*', ['build-misc']);
 })
 
 gulp.task('deploy', ['build'], function() {
-  return gulp.src('./dist/**/*')
+  return gulp.src('./.tmp/public/**/*')
     .pipe(ftp({
       host: 'ftp.jstnjns.com',
       user: 'cloudlist@jstnjns.com',
@@ -104,9 +100,3 @@ gulp.task('deploy', ['build'], function() {
     }))
     .pipe(util.noop());
 });
-
-gulp.task('default', [
-  'build',
-  'serve',
-  'watch'
-]);
