@@ -7,7 +7,8 @@ angular.module('cloudlistApp')
           $scope.playlist = Playlist;
 
           fetch();
-          window.setInterval(fetch, 15000);
+          // seconds * 1000ms
+          window.setInterval(fetch, 60 * 1000);
         },
 
         fetch = function() {
