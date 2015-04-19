@@ -6,16 +6,17 @@ angular.module('cloudlistApp')
     var init = function() {
           $scope.playlist = Playlist;
 
-          fetch();
-          // seconds * 1000ms
-          window.setInterval(fetch, 60 * 1000);
-        },
+          io.socket.get('/tracks', function(tracks) {
+            Playlist.load(tracks);
+            $scope.$apply();
+          });
 
-        fetch = function() {
-          Tracks.fetchAll()
-            .then(function(tracks) {
-              Playlist.load(tracks);
-            });
+          io.socket.on('tracks', function(event) {
+            if(event.verb == 'created') {
+              Playlist.add(event.data);
+              $scope.$apply();
+            }
+          });
         };
 
     init();

@@ -19,7 +19,6 @@ angular.module('cloudlistApp')
                 meta: data
               }).$save()
                 .then(function(track) {
-                  Playlist.add(track);
                   $scope.clear();
                 });
 
