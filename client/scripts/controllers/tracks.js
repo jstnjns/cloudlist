@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TracksCtrl', function ($scope, Tracks, Playlist) {
+  .controller('TracksCtrl', function ($scope, Tracks, Playlist, API) {
+
+    io.sails.url = API.url;
 
     var init = function() {
           $scope.playlist = Playlist;

@@ -35,7 +35,8 @@
   "scripts": {
     "preinstall": "npm install -g bower && npm install -g forever",
     "prestart": "npm install && bower install",
-    "start": "parallelshell \"gulp build\" \"forever app.js\"",
+    "start": "node app.js",
+    "dev": "parallelshell \"gulp build\" \"forever app.js\"",
     "server": "nodemon app",
     "client": "gulp watch"
   },
