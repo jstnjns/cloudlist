@@ -39,7 +39,7 @@
   "scripts": {
     "preinstall": "npm install -g bower && npm install -g forever",
     "prestart": "bower install",
-    "start": "gulp build && forever app.js",
+    "start": "gulp build && forever app.js --prod",
 
     "server": "nodemon app",
     "client": "gulp watch"

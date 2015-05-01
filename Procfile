@@ -1,1 +1,1 @@
-web: gulp build && node app -p 1337
+web: gulp build && node app --prod
