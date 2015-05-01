@@ -1,1 +1,1 @@
-web: node index.js
+web: gulp build and node app
