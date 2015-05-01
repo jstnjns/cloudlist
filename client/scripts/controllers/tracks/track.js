@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TrackCtrl', function ($scope, Playlist) {
+  .controller('TrackCtrl', function ($scope, Track, Playlist) {
 
     $scope.play = function(i) {
       Playlist.play(i);
     };
 
-    $scope.preventBubble = function(event) {
-      event.stopPropagation();
+    $scope.delete = function() {
+      console.log('delete');
+      Track.destroy($scope.track);
     };
 
   });

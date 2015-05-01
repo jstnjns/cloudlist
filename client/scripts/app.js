@@ -28,6 +28,9 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .config(function (API) {
+    io.sails.url = API.url;
   });
 
 SC.initialize({

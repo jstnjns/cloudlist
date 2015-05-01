@@ -5,11 +5,7 @@
     ng-repeat="track in playlist.tracks"
     ng-controller="TrackCtrl"
     ng-include="'views/tracks/track.html'"
-
-    ng-click="play($index)"
-    ng-class="{
-      'active': $index == playlist.currentTrack
-    }"></a>
+    ng-class="{'active': $index == playlist.currentTrack}"></a>
 
 </div>
 

@@ -63,6 +63,10 @@ angular.module('cloudlistApp')
       this.tracks.push(track);
     };
 
+    Playlist.prototype.remove = function(track) {
+      console.log('playlist:remove', track);
+    };
+
     return new Playlist();
 
   });

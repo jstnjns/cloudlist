@@ -1,8 +1,15 @@
-{{track.name}}
+<span ng-click="play($index)">
+  {{track.name}}
+</span>
+
 <div class="btn-group btn-group-xs pull-right">
-    <a href="{{track.meta.permalink_url}}" class="btn btn-default" target="_blank"
-        ng-click="preventBubble($event)"
-        ng-show="track.meta.permalink_url">
-        <span class="glyphicon glyphicon-cloud"></span>
-    </a>
+  <a href="{{track.meta.permalink_url}}" class="btn btn-default" target="_blank"
+    ng-show="track.meta.permalink_url">
+    <span class="glyphicon glyphicon-cloud"></span>
+  </a>
+
+  <a class="btn btn-danger"
+    ng-click="delete();">
+    &times;
+  </a>
 </div>
