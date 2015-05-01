@@ -1,1 +1,1 @@
-web: gulp build && node app --prod
+web: gulp build && forever app.js --prod
