@@ -1,0 +1,6 @@
+{
+  "name": "ClouList",
+  "description": "Communal playlists for SoundCloud users that want to share new music",
+  "repository": "https://github.com/jstnjns/cloudlist",
+  "keywords": ["soundcloud", "music", "share"]
+}

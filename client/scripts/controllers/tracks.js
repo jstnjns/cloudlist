@@ -6,16 +6,10 @@ angular.module('cloudlistApp')
     var init = function() {
           $scope.playlist = Playlist;
 
-          fetch();
-          // seconds * 1000ms
-          window.setInterval(fetch, 60 * 1000);
-        },
-
-        fetch = function() {
-          Tracks.fetchAll()
-            .then(function(tracks) {
-              Playlist.load(tracks);
-            });
+          Tracks
+            .on('add', function(track) { Playlist.add(track); })
+            .on('remove', function(track) { Playlist.remove(track); })
+            .get();
         };
 
     init();

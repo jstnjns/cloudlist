@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .controller('TracksNewCtrl', function ($scope, Tracks, SoundcloudService, Playlist) {
+  .controller('TracksNewCtrl', function ($scope, Tracks, Track, SoundcloudService, Playlist) {
 
     $scope.url = '';
 
@@ -12,16 +12,16 @@ angular.module('cloudlistApp')
         .success(function(data) {
           if (!SoundcloudService.isTrack(data)) return;
 
-          new Tracks({
+          var track = {
                 name: data.title,
                 art: data.artwork_url,
                 url: data.uri,
                 meta: data
-              }).$save()
-                .then(function(track) {
-                  Playlist.add(track);
-                  $scope.clear();
-                });
+              }
+
+          Tracks.create(track, function(response) {
+            $scope.clear()
+          });
 
         })
         .error(function(err) {

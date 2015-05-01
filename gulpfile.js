@@ -35,6 +35,7 @@ gulp.task('build-scripts-vendor', function() {
   return gulp.src([
       './bower_components/jquery/dist/jquery.js',
       './bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js',
+      './bower_components/sails.io.js/dist/sails.io.js',
       './bower_components/angular/angular.js',
       './bower_components/angular-animate/angular-animate.js',
       './bower_components/angular-cookies/angular-cookies.js',
@@ -71,9 +72,17 @@ gulp.task('build-images', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('build-fonts', function() {
-  return gulp.src('./bower_components/bootstrap-sass-official/assets/fonts/**/*')
-    .pipe(gulp.dest('./.tmp/public/fonts/'))
+gulp.task('build-fonts', ['build-fonts-glyphicons', 'build-fonts-fontawesome']);
+
+gulp.task('build-fonts-glyphicons', function() {
+  return gulp.src('./bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*')
+    .pipe(gulp.dest('./.tmp/public/fonts/bootstrap'))
+    .pipe(connect.reload());
+});
+
+gulp.task('build-fonts-fontawesome', function() {
+  return gulp.src('./bower_components/fontawesome/fonts/*')
+    .pipe(gulp.dest('./.tmp/public/fonts/fontawesome/'))
     .pipe(connect.reload());
 });
 
