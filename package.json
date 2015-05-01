@@ -31,7 +31,6 @@
     "gulp-util": "^3.0.4"
   },
   "scripts": {
-    "preinstall": "npm install -g bower && npm install -g forever",
     "postinstall": "bower install && gulp build",
     "start": "forever app.js --prod"
   },
