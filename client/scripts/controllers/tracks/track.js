@@ -8,8 +8,11 @@ angular.module('cloudlistApp')
     };
 
     $scope.delete = function() {
-      console.log('delete');
       Track.destroy($scope.track);
     };
+
+    $scope.preventBubble = function(event) {
+      event.stopPropagation();
+    }
 
   });

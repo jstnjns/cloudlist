@@ -1,15 +1,16 @@
-<span ng-click="play($index)">
-  {{track.name}}
-</span>
+<div class="media">
+  <div class="pull-left">
+    <a href="{{track.meta.permalink_url}}" target="_blank"
+      ng-show="track.meta.permalink_url"
+      ng-click="preventBubble($event)">
+      <i class="fa fa-soundcloud"></i>
+    </a>
+  </div>
 
-<div class="btn-group btn-group-xs pull-right">
-  <a href="{{track.meta.permalink_url}}" class="btn btn-default" target="_blank"
-    ng-show="track.meta.permalink_url">
-    <i class="fa fa-soundcloud"></i>
-  </a>
+  <a class="close" ng-click="delete();">&times;</a>
 
-  <a class="btn btn-danger"
-    ng-click="delete();">
-    <i class="fa fa-times"></i>
-  </a>
+  <div class="media-body"
+    ng-click="play($index)">
+    {{track.name}}
+  </div>
 </div>

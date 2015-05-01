@@ -64,7 +64,9 @@ angular.module('cloudlistApp')
     };
 
     Playlist.prototype.remove = function(track) {
-      console.log('playlist:remove', track);
+      this.tracks = _.filter(this.tracks, function(t) {
+        return t.id != track.id;
+      });
     };
 
     return new Playlist();

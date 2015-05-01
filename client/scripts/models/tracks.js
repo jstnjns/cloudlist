@@ -19,7 +19,7 @@ angular.module('cloudlistApp')
             var that = this;
 
             io.socket.on('tracks', function(event) {
-              that.trigger(verbs[event.verb], event.data)
+              that.trigger(verbs[event.verb], event.data || event.previous)
             });
 
             return this;
@@ -64,6 +64,19 @@ angular.module('cloudlistApp')
             return this;
           },
 
+          remove: function(track) {
+            var that = this;
+
+            if(track.length > 1) {
+              track.forEach(function(t) { that.add(t); });
+              return this;
+            }
+
+            this.trigger('remove', track);
+
+            return this;
+          },
+
           on: function(key, callback) {
             if(!this.listeners[key]) this.listeners[key] = [];
             this.listeners[key].push(callback);
@@ -95,7 +108,7 @@ angular.module('cloudlistApp')
     return Tracks.init();
 
   })
-  .factory('Track', function($rootScope) {
+  .factory('Track', function($rootScope, $injector) {
 
     return {
 
@@ -118,10 +131,13 @@ angular.module('cloudlistApp')
       },
 
       destroy: function(track, callback) {
-        if(!track.id) return console.log('Error: No ID');
+        if(!track.id) return;
+
+        var Tracks = $injector.get('Tracks');
 
         io.socket.delete('/tracks/' + track.id, function(response) {
           $rootScope.$apply(function() {
+            Tracks.remove(response);
             if(callback && typeof callback == 'function') callback(response);
           });
         });
