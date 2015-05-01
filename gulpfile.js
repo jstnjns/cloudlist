@@ -72,9 +72,17 @@ gulp.task('build-images', function() {
     .pipe(connect.reload());
 });
 
-gulp.task('build-fonts', function() {
-  return gulp.src('./bower_components/bootstrap-sass-official/assets/fonts/**/*')
-    .pipe(gulp.dest('./.tmp/public/fonts/'))
+gulp.task('build-fonts', ['build-fonts-glyphicons', 'build-fonts-fontawesome']);
+
+gulp.task('build-fonts-glyphicons', function() {
+  return gulp.src('./bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*')
+    .pipe(gulp.dest('./.tmp/public/fonts/bootstrap'))
+    .pipe(connect.reload());
+});
+
+gulp.task('build-fonts-fontawesome', function() {
+  return gulp.src('./bower_components/fontawesome/fonts/*')
+    .pipe(gulp.dest('./.tmp/public/fonts/fontawesome/'))
     .pipe(connect.reload());
 });
 
