@@ -29,8 +29,6 @@ angular.module('cloudlistApp')
           get: function(callback) {
             var that = this;
 
-            console.log('here');
-
             // Standard
             $http
               .get(API.url + '/tracks')
