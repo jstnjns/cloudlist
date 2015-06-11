@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .factory('Tracks', function ($rootScope, $http, Track) {
+  .factory('Tracks', function ($rootScope, $http, Track, API) {
 
 
     var verbs = {
@@ -32,11 +32,13 @@ angular.module('cloudlistApp')
             console.log('here');
 
             // Standard
-            $http.get('/tracks').then(function(tracks) {
-              that.add(tracks);
+            $http
+              .get(API.url + '/tracks')
+              .then(function(tracks) {
+                that.add(tracks);
 
-              if(callback && typeof callback == 'function') callback(tracks);
-            });
+                if(callback && typeof callback == 'function') callback(tracks);
+              });
 
             // Sockets
             // io.socket.get('/tracks', function(tracks) {
@@ -127,9 +129,11 @@ angular.module('cloudlistApp')
         if(!track.id) return this.create(track, callback);
 
         // Standard
-        $http.put('/tracks/' + track.id, track).then(function(response) {
-          if(callback && typeof callback == 'function') callback(response);
-        });
+        $http
+          .put(API.url + '/tracks/' + track.id, track)
+          .then(function(response) {
+            if(callback && typeof callback == 'function') callback(response);
+          });
 
         // Sockets
         // io.socket.put('/tracks/' + track.id, track, function(response) {
@@ -143,9 +147,11 @@ angular.module('cloudlistApp')
       create: function(data, callback) {
 
         // Standard
-        $http.post('/tracks', data).then(function(response) {
-          if(callback && typeof callback == 'function') callback(response);
-        });
+        $http
+          .post(API.url + '/tracks', data)
+          .then(function(response) {
+            if(callback && typeof callback == 'function') callback(response);
+          });
 
         // Sockets
         // io.socket.post('/tracks', data, function(response) {
@@ -162,11 +168,13 @@ angular.module('cloudlistApp')
         var Tracks = $injector.get('Tracks');
 
         // Standard
-        $http.delete('/tracks/' + track.id).then(function(response) {
-          Tracks.remove(response);
+        $http
+          .delete(API.url + '/tracks/' + track.id)
+          .then(function(response) {
+            Tracks.remove(response);
 
-          if(callback && typeof callback == 'function') callback(response);
-        })
+            if(callback && typeof callback == 'function') callback(response);
+          });
 
         // Sockets
         // io.socket.delete('/tracks/' + track.id, function(response) {
