@@ -32,7 +32,7 @@ angular.module('cloudlistApp')
             // Standard
             $http
               .get(API.url + '/tracks')
-              .then(function(tracks) {
+              .success(function(tracks) {
                 that.add(tracks);
 
                 if(callback && typeof callback == 'function') callback(tracks);
@@ -129,7 +129,7 @@ angular.module('cloudlistApp')
         // Standard
         $http
           .put(API.url + '/tracks/' + track.id, track)
-          .then(function(response) {
+          .success(function(response) {
             if(callback && typeof callback == 'function') callback(response);
           });
 
@@ -147,7 +147,7 @@ angular.module('cloudlistApp')
         // Standard
         $http
           .post(API.url + '/tracks', data)
-          .then(function(response) {
+          .success(function(response) {
             if(callback && typeof callback == 'function') callback(response);
           });
 
@@ -168,7 +168,7 @@ angular.module('cloudlistApp')
         // Standard
         $http
           .delete(API.url + '/tracks/' + track.id)
-          .then(function(response) {
+          .success(function(response) {
             Tracks.remove(response);
 
             if(callback && typeof callback == 'function') callback(response);
