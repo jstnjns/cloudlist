@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cloudlistApp')
-  .factory('Tracks', function ($rootScope, Track) {
+  .factory('Tracks', function ($rootScope, $http, Track) {
 
 
     var verbs = {
@@ -18,9 +18,10 @@ angular.module('cloudlistApp')
           init: function() {
             var that = this;
 
-            io.socket.on('tracks', function(event) {
-              that.trigger(verbs[event.verb], event.data || event.previous)
-            });
+            // Sockets
+            // io.socket.on('tracks', function(event) {
+            //   that.trigger(verbs[event.verb], event.data || event.previous)
+            // });
 
             return this;
           },
@@ -28,13 +29,23 @@ angular.module('cloudlistApp')
           get: function(callback) {
             var that = this;
 
-            io.socket.get('/tracks', function(tracks) {
-              $rootScope.$apply(function() {
-                that.add(tracks);
+            console.log('here');
 
-                if(callback && typeof callback == 'function') callback(tracks);
-              });
+            // Standard
+            $http.get('/tracks').then(function(tracks) {
+              that.add(tracks);
+
+              if(callback && typeof callback == 'function') callback(tracks);
             });
+
+            // Sockets
+            // io.socket.get('/tracks', function(tracks) {
+            //   $rootScope.$apply(function() {
+            //     that.add(tracks);
+
+            //     if(callback && typeof callback == 'function') callback(tracks);
+            //   });
+            // });
 
             return this;
           },
@@ -115,19 +126,34 @@ angular.module('cloudlistApp')
       save: function(track, callback) {
         if(!track.id) return this.create(track, callback);
 
-        io.socket.put('/tracks/' + track.id, track, function(response) {
-          $rootScope.$apply(function() {
-            if(callback && typeof callback == 'function') callback(response);
-          });
+        // Standard
+        $http.put('/tracks/' + track.id, track).then(function(response) {
+          if(callback && typeof callback == 'function') callback(response);
         });
+
+        // Sockets
+        // io.socket.put('/tracks/' + track.id, track, function(response) {
+        //   $rootScope.$apply(function() {
+        //     if(callback && typeof callback == 'function') callback(response);
+        //   });
+        // });
+
       },
 
       create: function(data, callback) {
-        io.socket.post('/tracks', data, function(response) {
-          $rootScope.$apply(function() {
-            if(callback && typeof callback == 'function') callback(response);
-          });
+
+        // Standard
+        $http.post('/tracks', data).then(function(response) {
+          if(callback && typeof callback == 'function') callback(response);
         });
+
+        // Sockets
+        // io.socket.post('/tracks', data, function(response) {
+        //   $rootScope.$apply(function() {
+        //     if(callback && typeof callback == 'function') callback(response);
+        //   });
+        // });
+
       },
 
       destroy: function(track, callback) {
@@ -135,12 +161,22 @@ angular.module('cloudlistApp')
 
         var Tracks = $injector.get('Tracks');
 
-        io.socket.delete('/tracks/' + track.id, function(response) {
-          $rootScope.$apply(function() {
-            Tracks.remove(response);
-            if(callback && typeof callback == 'function') callback(response);
-          });
-        });
+        // Standard
+        $http.delete('/tracks/' + track.id).then(function(response) {
+          Tracks.remove(response);
+
+          if(callback && typeof callback == 'function') callback(response);
+        })
+
+        // Sockets
+        // io.socket.delete('/tracks/' + track.id, function(response) {
+        //   $rootScope.$apply(function() {
+        //     Tracks.remove(response);
+
+        //     if(callback && typeof callback == 'function') callback(response);
+        //   });
+        // });
+
       }
 
     }
