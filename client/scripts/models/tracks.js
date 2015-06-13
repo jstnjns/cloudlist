@@ -119,7 +119,7 @@ angular.module('cloudlistApp')
     return Tracks.init();
 
   })
-  .factory('Track', function($rootScope, $injector) {
+  .factory('Track', function($rootScope, $injector, $http, API) {
 
     return {
 
