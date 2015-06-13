@@ -33,9 +33,13 @@ angular.module('cloudlistApp')
             $http
               .get(API.url + '/tracks')
               .success(function(tracks) {
-                that.add(tracks);
 
-                if(callback && typeof callback == 'function') callback(tracks);
+                if(tracks.length > 0) {
+                  that.add(tracks);
+
+                  if(callback && typeof callback == 'function') callback(tracks);
+                }
+
               });
 
             // Sockets
@@ -119,7 +123,7 @@ angular.module('cloudlistApp')
     return Tracks.init();
 
   })
-  .factory('Track', function($rootScope, $injector) {
+  .factory('Track', function($rootScope, $injector, $http, API) {
 
     return {
 
